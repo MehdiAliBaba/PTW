@@ -13,10 +13,16 @@
   </head>
   <body>
   
-	<a-scene color:blue">
+	<a-scene color:blue>
 		<a-assets>
 			<audio id="song" src="music/desert_ambience.mp3" autoplay loop>
 			<img id="boxTexture" src="https://i.imgur.com/mYmmbrp.jpg">
+      <a-mixin id="option"
+                 geometry="primitive: box; width: 2; depth: 0.01"
+                 material="color: #333"
+                 event-proxy="listen: click; target: a-box"
+                 event-set__enter="_event: mouseenter; material.color: #EEE"
+                 event-set__leave="_event: mouseleave; material.color: #333"></a-mixin>
 		</a-assets>
 	
 		<a-camera>
@@ -58,7 +64,58 @@
          <a-entity light="type: point; color: #f4f4f4; intensity: 0.2; distance: 0" position="8 10 18"></a-entity>
          <a-entity light="type: point; color: #f4f4f4; intensity: 0.6; distance: 0" position="-8 10 -18"></a-entity>
          <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.4;" position="-8 10 -18"></a-entity>
-	  
+	 
+
+      <a-entity id="container" position="0 2 -15">
+        <a-box
+          id="testContainer" color="#F55" height="3"
+          animation__scale="property: scale; dir: alternate; dur: 200;
+                            easing: easeInSine; loop: true; to: 1.2 1 1.2;
+                            startEvents: scale; pauseEvents: animationPause;
+                            resumeEvents: animationResume; restartEvents: animationRestart"
+          animation__position="property: position; dir: alternate; dur: 1000;
+                               easing: easeInSine; loop: true; to: 0 4 -2;
+                               startEvents: position; pauseEvents: animationPause;
+                               resumeEvents: animationResume; restartEvents: animationRestart"
+          animation__color="property: color; dir: alternate; dur: 1000;
+                            easing: easeInSine; loop: true; to: #5F5;
+                            startEvents: color; pauseEvents: animationPause;
+                            resumeEvents: animationResume; restartEvents: animationRestart"
+          position="0 1 -2">
+        </a-box>
+
+        <a-entity layout="type: line; margin: 2.5" position="-2.5 0 0">
+          <a-entity mixin="option" event-proxy="emit: scale">
+            <a-entity bmfont-text="text: Scale; color: #FFF"
+                      position="-0.2 0 0.1"></a-entity>
+          </a-entity>
+          <a-entity mixin="option" event-proxy="emit: position">
+            <a-entity bmfont-text="text: Position; color: #FFF"
+                      position="-0.45 0 0.1"></a-entity>
+          </a-entity>
+          <a-entity mixin="option" event-proxy="emit: color">
+            <a-entity bmfont-text="text: Color; color: #FFF"
+                      position="-0.25 0 0.1"></a-entity>
+          </a-entity>
+        </a-entity>
+
+        <a-entity layout="type: line; margin: 2.5" position="-2.5 -1.5 0">
+          <a-entity mixin="option" event-proxy="emit: animationPause">
+            <a-entity bmfont-text="text: Pause All; color: #FFF"
+                      position="-0.4 0 0.1"></a-entity>
+          </a-entity>
+          <a-entity mixin="option" event-proxy="emit: animationResume">
+            <a-entity bmfont-text="text: Resume All; color: #FFF"
+                      position="-0.5 0 0.1"></a-entity>
+          </a-entity>
+          <a-entity mixin="option" event-proxy="emit: animationRestart">
+            <a-entity bmfont-text="text: Restart All; color: #FFF"
+                      position="-0.6 0 0.1"></a-entity>
+          </a-entity>
+        </a-entity>
+      </a-entity>
+
+   
     </a-scene>
   </body>
 </html>
