@@ -34,7 +34,7 @@
 		
 		<a-entity camera="userHeight: 1.6" look-controls wasd-controls id="second-camera">
 			<a-entity cursor="fuse: true; fuseTimeout: 500 id="second-cursor"
-				position="10 10 10"
+				position="40 100 -10"
 				geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
 				material="color: red; shader: flat">
 			</a-entity>
@@ -50,6 +50,8 @@
 					var secondCameraEl = document.querySelector('#second-camera');
 					secondCameraEl.setAttribute('camera', 'active', true);
 					secondCameraEl.setAttribute('camera', 'userHeight', "10");
+					//secondCameraEl.setAttribute('entity', 'positioin', "10");
+					secondCameraEl.setAttribute('position', { x: 1, y: 2, z: 3 });
 				});
 			}
 			});
