@@ -32,18 +32,28 @@
 			</a-entity>
 		</a-entity>
 		
+		<a-entity camera="userHeight: 1.6" look-controls wasd-controls id="second-camera">
+			<a-entity cursor="fuse: true; fuseTimeout: 500"
+				position="10 10 -10"
+				geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+				material="color: red; shader: flat">
+			</a-entity>
+		</a-entity>
+		
 		<a-entity id="box" cursor-listener geometry="primitive: box" material="color: blue"></a-entity>
 		<script>// Component to change to random color on click.
-AFRAME.registerComponent('cursor-listener', {
-  init: function () {
-    var COLORS = ['red', 'green', 'blue'];
-    this.el.addEventListener('click', function (evt) {
-      var randomIndex = Math.floor(Math.random() * COLORS.length);
-      this.setAttribute('material', 'color', COLORS[randomIndex]);
-      console.log('I was clicked at: ', evt.detail.intersection.point);
-    });
-  }
-});</script>
+			AFRAME.registerComponent('cursor-listener', {
+				init: function () {
+				var COLORS = ['red', 'green', 'blue'];
+				this.el.addEventListener('click', function (evt) {
+					//var randomIndex = Math.floor(Math.random() * COLORS.length);
+					//this.setAttribute('material', 'color', COLORS[randomIndex]);
+					var secondCameraEl = document.querySelector('#second-camera');
+					secondCameraEl.setAttribute('camera', 'active', true);
+				});
+			}
+			});
+		</script>
 		
 		<a-entity sound="src: #song; autoplay:true; volume:0.5; loop:true"></a-entity>
 		
