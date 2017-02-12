@@ -8,8 +8,6 @@
     <script src="aframe.js"></script>
     <script src="script/ground.js"></script>
     <script src="script/skyGradient.js"></script>
-    <script src="script/build.js"></script>
-    <script src="script/event-proxy.js"></script>
   </head>
   <body>
   
@@ -25,14 +23,41 @@
                  event-set__leave="_event: mouseleave; material.color: #333"></a-mixin>
 		</a-assets>
 	
-		<a-camera>
-			<a-cursor color="red"></a-cursor>
-		</a-camera>
-
-	
+		<!-- Cameras -->
+		<a-entity camera="userHeight: 1.6" look-controls wasd-controls>
+			<a-entity cursor="fuse: true; fuseTimeout: 500"
+				position="0 0 -1"
+				geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+				material="color: red; shader: flat">
+			</a-entity>
+		</a-entity>
 		
-      <a-box src="#boxTexture" position="0 2 -5" rotation="0 45 45" scale="2 2 2" sound="src: url(sound/magnicube.mp3); on: click"></a-box>
-      <a-sky src="#skyTexture"></a-sky>
+		<a-entity id="box" cursor-listener geometry="primitive: box" material="color: blue"></a-entity>
+		<script>// Component to change to random color on click.
+AFRAME.registerComponent('cursor-listener', {
+  init: function () {
+    var COLORS = ['red', 'green', 'blue'];
+    this.el.addEventListener('click', function (evt) {
+      var randomIndex = Math.floor(Math.random() * COLORS.length);
+      this.setAttribute('material', 'color', COLORS[randomIndex]);
+      console.log('I was clicked at: ', evt.detail.intersection.point);
+    });
+  }
+});</script>
+		
+		<a-entity sound="src: #song; autoplay:true; volume:0.5; loop:true"></a-entity>
+		
+		<a-sky src="#skyTexture"></a-sky>
+		
+		<a-box
+			src="#boxTexture"
+			position="0 2 -5"
+			rotation="0 45 45"
+			scale="2 2 2"
+			sound="src: url(sound/magnicube.mp3); on: click"
+			>
+		</a-box>
+      
      
       <a-collada-model position="10.35 .8 -2" radius="0.5" height="1.5" src="model/boat.dae"> </a-collada-model>
       <a-collada-model position="-.22 1.64 .15" width="52" height="50" scale="0.05 0.05 0.05" src="model/ricehat.dae"> </a-collada-model>
@@ -53,10 +78,10 @@
       <a-collada-model position="12.55 0.21 1.56" rotation="0.82 228 0" radius="0.5" height="1.5" src="model/man.dae"> </a-collada-model>
       <a-collada-model position="12.20 1.57 2.04" width="52" height="50" scale="0.1 0.1 0.1" src="model/ricehat.dae"> </a-collada-model>
 	  
-	  <a-entity sound="src: #song; autoplay:true; volume:0.5; loop:true"></a-entity>
 	  
 	  
-	          <!-- Environment -->
+	  
+		<!-- Environment -->
         <a-entity id="sky"
                   geometry="primitive: sphere; radius: 65;"
                   material="shader: skyGradient; colorTop: #353449; colorBottom: #BC483E; side: back"></a-entity>
@@ -64,58 +89,7 @@
          <a-entity light="type: point; color: #f4f4f4; intensity: 0.2; distance: 0" position="8 10 18"></a-entity>
          <a-entity light="type: point; color: #f4f4f4; intensity: 0.6; distance: 0" position="-8 10 -18"></a-entity>
          <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.4;" position="-8 10 -18"></a-entity>
-	 
 
-      <a-entity id="container" position="0 2 -15">
-        <a-box
-          id="testContainer" color="#F55" height="3"
-          animation__scale="property: scale; dir: alternate; dur: 200;
-                            easing: easeInSine; loop: true; to: 1.2 1 1.2;
-                            startEvents: scale; pauseEvents: animationPause;
-                            resumeEvents: animationResume; restartEvents: animationRestart"
-          animation__position="property: position; dir: alternate; dur: 1000;
-                               easing: easeInSine; loop: true; to: 0 4 -2;
-                               startEvents: position; pauseEvents: animationPause;
-                               resumeEvents: animationResume; restartEvents: animationRestart"
-          animation__color="property: color; dir: alternate; dur: 1000;
-                            easing: easeInSine; loop: true; to: #5F5;
-                            startEvents: color; pauseEvents: animationPause;
-                            resumeEvents: animationResume; restartEvents: animationRestart"
-          position="0 1 -2">
-        </a-box>
-
-        <a-entity layout="type: line; margin: 2.5" position="-2.5 0 0">
-          <a-entity mixin="option" event-proxy="emit: scale">
-            <a-entity bmfont-text="text: Scale; color: #FFF"
-                      position="-0.2 0 0.1"></a-entity>
-          </a-entity>
-          <a-entity mixin="option" event-proxy="emit: position">
-            <a-entity bmfont-text="text: Position; color: #FFF"
-                      position="-0.45 0 0.1"></a-entity>
-          </a-entity>
-          <a-entity mixin="option" event-proxy="emit: color">
-            <a-entity bmfont-text="text: Color; color: #FFF"
-                      position="-0.25 0 0.1"></a-entity>
-          </a-entity>
-        </a-entity>
-
-        <a-entity layout="type: line; margin: 2.5" position="-2.5 -1.5 0">
-          <a-entity mixin="option" event-proxy="emit: animationPause">
-            <a-entity bmfont-text="text: Pause All; color: #FFF"
-                      position="-0.4 0 0.1"></a-entity>
-          </a-entity>
-          <a-entity mixin="option" event-proxy="emit: animationResume">
-            <a-entity bmfont-text="text: Resume All; color: #FFF"
-                      position="-0.5 0 0.1"></a-entity>
-          </a-entity>
-          <a-entity mixin="option" event-proxy="emit: animationRestart">
-            <a-entity bmfont-text="text: Restart All; color: #FFF"
-                      position="-0.6 0 0.1"></a-entity>
-          </a-entity>
-        </a-entity>
-      </a-entity>
-
-   
     </a-scene>
   </body>
 </html>
