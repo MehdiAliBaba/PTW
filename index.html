@@ -2,14 +2,17 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Bazar Virtuel</title>
+    <title>Hub magasins</title>
     <script src="script/aframe.js"></script>
     <script src="script/tp.js"></script>
+    <script src="gasolin.idv.tw/aframe-href-component/build.js"></script>
   </head>
   <body>
   <a-scene>
     <a-assets>
       <audio id="hub_ambience" src="music/hub_music.mp3" autoplay loop>
+      <img id="blue_door" src="picture/blue-door.png">
+      <img id="green_door" src="picture/green-door.png">
     </a-assets>
     
     <!-- Statics -->
@@ -26,7 +29,43 @@
     </a-camera>
 
     <!-- Interactives -->
-    
+    <a-box
+      id="wall"
+      color="silver"
+      depth="0"
+      height="4"
+      width="10"
+      href="www.google.fr"
+      position="0, 1, -5">
+        <a-text
+          position="-5, 1.8, 0"
+          color="black"
+          value="Magasin de vetements">
+        </a-text>
+        <a-text
+        position="0, 1.8, 0"
+          color="black"
+          align="center"
+          value="Bienvenue dans votre shopping virtuel">
+        </a-text>
+        <a-text
+        position="5, 1.8, 0"s
+          color="black"
+          align="right"
+          value="Magasin alimentaire"
+          >
+        </a-text>
+        <a-image blue_door
+          src="#blue_door"
+          height="2.5"
+          position="-4, -0.8, 0.1">
+        </a-image>
+        <a-image green_door
+          src="#green_door"
+          height="2.5"
+          position="4, -0.8, 0.1">
+        </a-image>
+    </a-box>
     
     
     </a-scene>
