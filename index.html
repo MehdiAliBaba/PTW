@@ -8,71 +8,48 @@
     <script src="aframe.js"></script>
     <script src="script/ground.js"></script>
     <script src="script/skyGradient.js"></script>
+    <script src="script/tp.js"></script>
   </head>
   <body>
   
-	<a-scene color:blue>
-		<a-assets>
-			<audio id="song" src="music/desert_ambience.mp3" autoplay loop>
-			<img id="boxTexture" src="https://i.imgur.com/mYmmbrp.jpg">
+  <a-scene color:blue>
+    <a-assets>
+      <audio id="song" src="music/desert_ambience.mp3" autoplay loop>
+      <img id="boxTexture" src="https://i.imgur.com/mYmmbrp.jpg">
       <a-mixin id="option"
-                 geometry="primitive: box; width: 2; depth: 0.01"
-                 material="color: #333"
-                 event-proxy="listen: click; target: a-box"
-                 event-set__enter="_event: mouseenter; material.color: #EEE"
+        geometry="primitive: box; width: 2; depth: 0.01"
+        material="color: #333"
+        event-proxy="listen: click; target: a-box"
+        event-set__enter="_event: mouseenter; material.color: #EEE"
                  event-set__leave="_event: mouseleave; material.color: #333"></a-mixin>
-		</a-assets>
-	
-		<!-- Cameras -->
-		<a-entity camera="userHeight: 1.6" look-controls wasd-controls>
-			<a-entity cursor="fuse: true; fuseTimeout: 500"
-				position="0 0 -1"
-				geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-				material="color: red; shader: flat">
-			</a-entity>
-		</a-entity>
-		
-		<a-entity camera="userHeight: 1.6" look-controls wasd-controls id="second-camera">
-			<a-entity cursor="fuse: true; fuseTimeout: 500 id="second-cursor"
-				position="40 100 -10"
-				geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-				material="color: red; shader: flat">
-			</a-entity>
-		</a-entity>
-		
-		<a-entity id="box" cursor-listener geometry="primitive: box" material="color: blue" position="10 10 -10"></a-entity>
-		<script>// Component to change to random color on click.
-			AFRAME.registerComponent('cursor-listener', {
-				init: function () {
-				this.el.addEventListener('click', function (evt) {
-					//var randomIndex = Math.floor(Math.random() * COLORS.length);
-					//this.setAttribute('material', 'color', COLORS[randomIndex]);
-					var secondCameraEl = document.querySelector('#second-camera');
-					secondCameraEl.setAttribute('camera', 'active', true);
-					secondCameraEl.setAttribute('camera', 'userHeight', "10");
-					//secondCameraEl.setAttribute('entity', 'positioin', "10");
-					secondCameraEl.setAttribute('position', { x: 1, y: 2, z: 3 });
-				});
-			}
-			});
-		</script>
-		
-		<a-entity sound="src: #song; autoplay:true; volume:0.5; loop:true"></a-entity>
-		
-		<a-sky src="#skyTexture"></a-sky>
-		
-		<a-box
-			src="#boxTexture"
-			position="0 2 -5"
-			rotation="0 45 45"
-			scale="2 2 2"
-			sound="src: url(sound/magnicube.mp3); on: click"
-			>
-		</a-box>
+    </a-assets>
+    <!-- Cameras -->
+    <a-camera look-controls wasd-controls id="first-camera">
+      <a-entity cursor="fuse: true; fuseTimeout: 500"
+        position="0 0 -1"
+        geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+        material="color: red; shader: flat">
+      </a-entity>
+    </a-camera>
+
+    <a-entity id="box" tp1 geometry="primitive: box" material="color: blue" position="0 5 -1"></a-entity>
+
+    <a-entity sound="src: #song; autoplay:true; volume:0.5; loop:true"></a-entity>
+
+    <a-sky src="#skyTexture"></a-sky>
+
+    <a-box
+      src="#boxTexture"
+      position="0 2 -5"
+      rotation="0 45 45"
+      scale="2 2 2"
+      sound="src: url(sound/magnicube.mp3); on: click"
+>
+    </a-box>
       
      
       <a-collada-model position="10.35 .8 -2" radius="0.5" height="1.5" src="model/boat.dae"> </a-collada-model>
-      <a-collada-model position="-.22 1.64 .15" width="52" height="50" scale="0.05 0.05 0.05" src="model/ricehat.dae"> </a-collada-model>
+      <!-- <a-collada-model position="-.22 1.64 .15" width="52" height="50" scale="0.05 0.05 0.05" src="model/ricehat.dae"> </a-collada-model> -->
       <a-collada-model position="8.3 .3 4" radius="0.5" height="1.5" src="model/boat3.dae"> </a-collada-model>
       <a-collada-model position="9.86 0.58 0.31" rotation="0.82 57.12 0" radius="0.5" height="1.5" src="model/man.dae"> </a-collada-model>
       <a-collada-model position="10.25 0.84 -0.35" rotation="0.82 57.12 0" radius="0.5" height="1.5" src="model/boy.dae"> </a-collada-model>
@@ -89,11 +66,8 @@
       <a-collada-model position="12.08 0.24 2.26" rotation="0.82 228 0" radius="0.5" height="1.5" src="model/man.dae"> </a-collada-model>
       <a-collada-model position="12.55 0.21 1.56" rotation="0.82 228 0" radius="0.5" height="1.5" src="model/man.dae"> </a-collada-model>
       <a-collada-model position="12.20 1.57 2.04" width="52" height="50" scale="0.1 0.1 0.1" src="model/ricehat.dae"> </a-collada-model>
-	  
-	  
-	  
-	  
-		<!-- Environment -->
+
+      <!-- Environment -->
         <a-entity id="sky"
                   geometry="primitive: sphere; radius: 65;"
                   material="shader: skyGradient; colorTop: #353449; colorBottom: #BC483E; side: back"></a-entity>
