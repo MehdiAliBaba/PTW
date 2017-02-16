@@ -8,17 +8,24 @@
   </head>
   <body>
   <a-scene>
+    <!-- Assets -->
     <a-assets>
-      <audio id="hub_ambience" src="music/street_market.mp3" autoplay loop>
+      <a-asset-item id="stand1" src="model/stand/stand1.dae" />
+      <a-asset-item id="stand2" src="model/stand/stand2.dae" />
+      <a-asset-item id="stand3" src="model/stand/stand3.dae" />
+      <audio id="street_market" src="music/street_market.mp3" autoplay loop />
+      <img id="shop_floor" src="picture/floor.jpg" />
+      <img id="sky" src="picture/sky.png" />
+      <img id="compass" src="picture/compass.jpg" />
     </a-assets>
     
     <!-- Statics -->
-    <a-entity sound="src: #song; autoplay:true; volume:0.5; loop:true"></a-entity>
-    <a-sky src="#skyTexture"></a-sky>
-    
+    <a-sky src="#sky"></a-sky>
+
     <!-- Cameras -->
-    <a-camera look-controls wasd-controls id="first-camera">
-      <a-entity cursor="fuse: true; fuseTimeout: 500"
+    <a-camera look-controls wasd-controls id="first_camera" position="0, -1, 0">
+      <a-entity
+        cursor="fuse: true; fuseTimeout: 500"
         position="0 0 -1"
         geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
         material="color: red; shader: flat">
@@ -26,7 +33,48 @@
     </a-camera>
 
     <!-- Interactives -->
-    
+    <!-- Stand 1 -->
+    <a-entity
+      position="0, -1, 0">
+      <a-collada-model
+        src="#stand1">
+      </a-collada-model>
+      <a-box mag1_stand1
+        src="#compass"
+        position="0, 5, 0">
+      </a-box>
+    </a-entity>
+    <!-- Stand 2 -->
+    <a-entity
+      position="-10, -1, -5">
+      <a-collada-model
+        src="#stand2">
+      </a-collada-model>
+      <a-box mag1_stand2
+        src="#compass"
+        position="0, 3.3, 0">
+      </a-box>
+     </a-entity>
+    <!-- Stand 3 -->
+    <a-entity
+      position="7, -1, -8">
+      <a-collada-model
+        src="#stand3">
+      </a-collada-model>
+      <a-box mag1_stand3
+        src="#compass"
+        position="0, 3.3, 0">
+      </a-box>
+     </a-entity>
+    <!-- Ground -->
+    <a-plane
+      id="ground"
+      src="#shop_floor"
+      rotation="-90 0 0"
+      width="100"
+      height="100"
+      position="0, -1, 0">
+     </a-plane>
 
     </a-scene>
   </body>

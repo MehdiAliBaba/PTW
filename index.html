@@ -5,23 +5,24 @@
     <title>Hub magasins</title>
     <script src="script/aframe.js"></script>
     <script src="script/tp.js"></script>
-    <script src="gasolin.idv.tw/aframe-href-component/build.js"></script>
   </head>
   <body>
   <a-scene>
     <a-assets>
-      <audio id="hub_ambience" src="music/hub_music.mp3" autoplay loop>
-      <img id="blue_door" src="picture/blue-door.png">
-      <img id="green_door" src="picture/green-door.png">
+      <audio id="hub_ambience" src="music/hub_music.mp3" autoplay loop />
+      <img id="blue_door" src="picture/blue-door.png" />
+      <img id="green_door" src="picture/green-door.png" />
+      <img id="jules" src="picture/jules.jpg" />
+      <img id="ali" src="picture/ali.jpg" />
+      <img id="vivien" src="picture/vivien.jpg" />
     </a-assets>
     
     <!-- Statics -->
-    <a-entity sound="src: #song; autoplay:true; volume:0.5; loop:true"></a-entity>
-    <a-sky src="#skyTexture"></a-sky>
     
     <!-- Cameras -->
-    <a-camera look-controls wasd-controls id="first-camera">
-      <a-entity cursor="fuse: true; fuseTimeout: 500"
+    <a-camera look-controls wasd-controls id="first_camera">
+      <a-entity
+        cursor="fuse: true; fuseTimeout: 500"
         position="0 0 -1"
         geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
         material="color: red; shader: flat">
@@ -29,45 +30,100 @@
     </a-camera>
 
     <!-- Interactives -->
+    <!-- Front wall -->
     <a-box
-      id="wall"
+      id="front_wall"
       color="silver"
       depth="0"
       height="4"
       width="10"
-      href="www.google.fr"
       position="0, 1, -5">
-        <a-text
-          position="-5, 1.8, 0"
-          color="black"
-          value="Magasin de vetements">
-        </a-text>
-        <a-text
+      <a-text
+        position="-5, 1.8, 0"
+        color="black"
+        value="Magasin de vetements">
+      </a-text>
+      <a-text
         position="0, 1.8, 0"
-          color="black"
-          align="center"
-          value="Bienvenue dans votre shopping virtuel">
-        </a-text>
-        <a-text
+        color="black"
+        align="center"
+        value="Bienvenue dans votre shopping virtuel">
+      </a-text>
+      <a-text
         position="5, 1.8, 0"s
-          color="black"
-          align="right"
-          value="Magasin alimentaire"
-          >
-        </a-text>
-        <a-image blue_door
-          src="#blue_door"
-          height="2.5"
-          position="-4, -0.8, 0.01">
-        </a-image>
-        <a-image green_door
-          src="#green_door"
-          height="2.5"
-          position="4, -0.8, 0.01">
-        </a-image>
+        color="black"
+        align="right"
+        value="Magasin alimentaire">
+      </a-text>
+      <a-image blue_door
+        src="#blue_door"
+        height="2.5"
+        position="-4, -0.8, 0.01">
+      </a-image>
+      <a-image green_door
+        src="#green_door"
+        height="2.5"
+        position="4, -0.8, 0.01">
+      </a-image>
     </a-box>
-    
-    
+    <!-- Side walls -->
+    <a-box
+      id="left_wall"
+      color="silver"
+      depth="10"
+      height="4"
+      width="0" 
+      position="-5, 1, 0">
+    </a-box>
+    <a-box
+      id="right_wall"
+      color="silver"
+      depth="10"
+      height="4"
+      width="0" 
+      position="5, 1, 0">
+    </a-box>
+    <!-- Back walls -->
+    <a-box
+      id="back_wall" 
+      color="silver"
+      depth="0" 
+      height="4"
+      width="10" 
+      position="0, 1, 5">
+      <a-image
+        src="#ali"
+        position="4, 0, -0.1"
+        widht="-100">
+      </a-image>
+      <a-image
+        src="#jules"
+        position="0, 0, -0.1">
+      </a-image>
+      <a-image
+        src="#vivien"
+        position="-4, 0, -0.1">
+      </a-image>
+    </a-box>
+    <!-- Ground -->
+    <a-plane
+      id="ground"
+      color="#8a0a1e"
+      rotation="-90 0 0"
+      width="10"
+      height="10"
+      position="0, -1, 0">
+     </a-plane>
+    <!-- Ceiling -->
+    <a-plane
+      id="ceiling"
+      color="#3c3c3c"
+      rotation="90 0 0"
+      width="10"
+      height="10"
+      position="0, 3, 0">
+     </a-plane>
+
     </a-scene>
   </body>
 </html>
