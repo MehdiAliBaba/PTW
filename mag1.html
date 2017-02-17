@@ -5,6 +5,7 @@
     <title>Magasin 1</title>
     <script src="script/aframe.js"></script>
     <script src="script/tp.js"></script>
+    <script src="script/price.js"></script>
   </head>
   <body>
   <a-scene>
@@ -17,6 +18,8 @@
       <img id="shop_floor" src="picture/floor.jpg" />
       <img id="sky" src="picture/sky.png" />
       <img id="compass" src="picture/compass.jpg" />
+      <img id="red_door" src="picture/red-door.png" />
+      <img id="pay" src="picture/pay.png" />
     </a-assets>
     
     <!-- Statics -->
@@ -64,8 +67,44 @@
       <a-box mag1_stand3
         src="#compass"
         position="0, 3.3, 0">
-      </a-box>
      </a-entity>
+    <!-- Back wall -->
+    <a-entity
+      position="0, 0, 3">
+      <a-plane
+        id="back_wall"
+        color="#3c3c3c"
+        rotation="0 180 0"
+        width="2"
+        height="3">
+        <a-text
+          value="Retour"
+          color="white"
+          position="-1, 1.3, 0.01">
+        </a-text>
+        <a-image red_door
+          src="#red_door"
+          height="2.3"
+          position="-0.5, 0, 0.01">
+        </a-image>
+        <a-text
+          value="TOTAL :"
+          color="white"
+          position="0, 1.1, 0.01">
+        </a-text>
+        <a-text 
+          value="0"
+          id="to_pay"
+          value="0"
+          color="white"
+          position="0, 0.5, 0.01">
+        </a-text>
+         <a-image total_price
+          src="#pay"
+          position="0.5, -0.3, 0.01">
+        </a-image>
+      </a-plane>
+    </a-entity>
     <!-- Ground -->
     <a-plane
       id="ground"
