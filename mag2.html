@@ -15,6 +15,8 @@
       <a-asset-item id="stand2" src="model/stand/stand2.dae" />
       <a-asset-item id="stand3" src="model/stand/stand3.dae" />
       <a-asset-item id="apple" src="model/food/apple.dae" />
+      <a-asset-item id="bread" src="model/food/bread.dae" />
+      <a-asset-item id="cake" src="model/food/portal_cake.dae" />
       <a-asset-item id="water" src="model/food/water_bottle.dae" />
       <audio id="street_market" src="music/street_market.mp3" autoplay loop />
       <img id="shop_floor" src="picture/floor.jpg" />
@@ -57,21 +59,42 @@
         src="#stand2">
         <a-entity>
           <a-collada-model
-            src="#bread">
+            src="#bread"
+            position="0.4, 1.2, -0.5"
+            rotation="0 180 0">
           </a-collada-model>
-          <a-plane price1>
+          <a-plane price1
+            color="yellow"
+            position="0.4, 1.3, -0.1"
+            rotation="-45 45 0"
+            width="0.2"
+            height="0.2">
             <a-text
               id="text1"
-              value="1.00€">
+              value="1.00e"
+              color="black"
+              width="auto"
+              height="auto"
+              position="-0.05, 0, 0">
             </a-text>
           </a-plane>
           <a-collada-model
-            src="#cake">
+            src="#cake"
+            position="1.4, 1.2, 0">
           </a-collada-model>
-          <a-plane price7-13>
+          <a-plane price7-13
+            color="yellow"
+            position="1, 1.3, 0.2"
+            rotation="-45 0 0"
+            width="0.2"
+            height="0.2">
             <a-text
               id="text7-13"
-              value="7.13€">
+              value="7.13e"
+              color="black"
+              width="auto"
+              height="auto"
+              position="-0.05, 0, 0">
             </a-text>
           </a-plane>
         </a-entity>
@@ -107,12 +130,22 @@
             </a-text>
           </a-plane>
           <a-collada-model
-          src="#water">
+          src="#water"
+          position="-1.3, 0.9, 1">
           </a-collada-model>
-          <a-plane price0-25>
+          <a-plane price0-25
+            color="yellow"
+            position="1.2, 1, -0.3"
+            rotation="-45 0 0"
+            width="0.2"
+            height="0.2">
             <a-text
               id="text0-25"
-              value="0.25€">
+              value="0.25e"
+              color="black"
+              width="auto"
+              height="auto"
+              position="-0.05, 0, 0">
             </a-text>
           </a-plane>
         </a-entity>
